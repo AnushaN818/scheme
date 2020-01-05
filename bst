@@ -1,4 +1,3 @@
-"problem 1" 
 (define (make-tree value left right)
   (list value left right))
 (define (value tree) (car tree))
@@ -49,7 +48,6 @@
 (apt-value (make-tree 5 '() '()))
 (apt-value (make-tree '* (make-tree 5 '() '()) (make-tree 44 '() '())))
 
-"problem 2a"
 (define (prefix T)
 (if (empty-tree? T)
     '()
@@ -58,7 +56,6 @@
   )
 (prefix example)
 
-"problem 2b"
 (define (postfix T)
   (if (empty-tree? T)
       '()
@@ -68,7 +65,6 @@
       )
   )
 (postfix example)
-"help from ps6"
 (define (deep-reverse l)
   (cond ((null? l) '())
         ((pair? (car l))
@@ -82,7 +78,6 @@
         )
   )
 
-"problem 2c"
 (define (infixhelp T)
   (if (empty-tree? (value T))
       '()
@@ -101,7 +96,6 @@
   )
 (infix example)
 
-"problem 3a"
 (define (symbol>? a b) 
    (string>? (symbol->string a)(symbol->string b)))
 (define (symbol<? a b) 
@@ -121,7 +115,6 @@
 (bst-element? 'fred (make-tree 'fred '() '()))
 (bst-element? 'fred (make-tree 'froggy '() '()))
 
-"problem 3b"
 (define (bst-insert item bs-tree)
   (if (bst-element? item bs-tree)
       bs-treez
@@ -142,7 +135,6 @@
 (bst-insert 'fred '())
 (bst-insert 'fred (make-tree 'barney '() '()))
 
-"problem 3c"
 (define (bst-smallest bs-tree)
   (if (empty-tree? bs-tree)
       'undefined
@@ -157,7 +149,6 @@
                          (make-tree 'abner '() '())
                          (make-tree 'hari '() '())))
 
-"problem 3d"
 (define (bst-largest bs-tree)
   (if (empty-tree? bs-tree)
       'undefined
@@ -170,7 +161,6 @@
 (bst-largest (make-tree 'gus '() '()))
 (bst-largest (make-tree 'gus (make-tree 'abner '() '())(make-tree 'hari '() '()))) 
 
-"problem 3e"
 (define (bst-equal? tree1 tree2)
   (if (and (empty-tree? tree1) (empty-tree? tree2))
       #t
@@ -185,7 +175,6 @@
 (bst-equal? (make-tree 'gus '() '()) (make-tree 'gus '() '()))
 (bst-equal? (make-tree 'gus '() '()) (make-tree 'gussie '() '()))
 
-"problem 3f"
 (define (bst-superset? bst1 bst2)
   (if (empty-tree? bst2)
       #t
@@ -199,7 +188,6 @@
 (bst-superset? (make-tree 'gus '() '()) '())
 (bst-superset? '() (make-tree 'gus '() '()) )
 
-"problem 3g"
 (define (bst-set-equal? bst1 bst2)
   (if (and (bst-superset? bst1 bst2) (bst-superset? bst2 bst1))
       #t
@@ -209,7 +197,6 @@
 (bst-set-equal? (make-tree 'gus '() '()) '())
 (bst-set-equal? (make-tree 'gus '() '()) (make-tree 'gus '() '()) ) 
 
-"problem 4a"
 (define (bst-delete-min T)
   (if (and (empty-tree? (left T)) (empty-tree? (right T)))
       '()
@@ -222,7 +209,6 @@
                            (make-tree 'barney '() '())
                            (make-tree 'joe '() '()))) 
 
-"problem 4b"
 (define (bst-delete-max T)
   (if (and (empty-tree? (left T)) (empty-tree? (right T)))
       '()
@@ -234,7 +220,6 @@
                            (make-tree 'barney '() '())
                            (make-tree 'joe '() '())))
 
-"problem 4c"
 (define (bst-delete val bst)
   (cond
     ((not (bst-element? val bst))
