@@ -1,0 +1,81 @@
+(define (change thelp)
+  (string-append (if (< (floor (/ thelp 60)) 10)
+                     (string-append
+                      (number->string 0)
+                      (number->string (floor (/ thelp 60))))
+                     (number->string
+                      (floor (/ thelp 60))))
+                 ":"
+                 (if (< (modulo thelp 60) 10)
+                                     (string-append
+                                      (number->string 0)
+                                      (number->string (modulo thelp 60))
+                                      )
+                                     (number->string
+                                      (modulo thelp 60))
+                                 )
+                 )
+  )
+
+(define (make-clock hr min)
+  (let ((t (+ (* 60 hr) min)))
+      (define (tick)
+             (begin
+               (set! t
+                     (+ t 1))))
+      (define (time)
+        (if (< t 720)
+            (string-append
+             (number->string (floor (/ t 60)))
+             ":"
+              (if (< (modulo t 60) 10)
+                                     (string-append
+                                      (number->string 0)
+                                      (number->string (modulo t 60))
+                                      )
+                                     (number->string
+                                      (modulo t 60))
+                                 )
+              " AM"
+                           "\n")
+            (string-append
+             (number->string (floor (/ (- t 720) 60)))
+             ":"
+              (if (< (modulo (- t 720) 60) 10)
+                                     (string-append
+                                      (number->string 0)
+                                      (number->string (modulo (- t 720) 60))
+                                      )
+                                     (number->string
+                                      (modulo (- t 720) 60))
+                                 )
+                           " PM"
+                           "\n")
+                  ))
+       (define (military)
+             (string-append
+              (change t)
+              "\n"))
+    (lambda (method)
+      (cond ((eq? method 'tick) tick)
+            ((eq? method 'time) time)
+            ((eq? method 'military) military))
+      )
+    )
+  )
+
+(define clock (make-clock 2 0))
+(define get-time (clock 'time))
+(define get-mil (clock 'military))
+(display (get-time))
+(display (get-mil))
+((clock 'tick))
+(display (get-time))
+(display (get-mil))
+
+
+
+      
+      
+      
+
